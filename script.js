@@ -1,30 +1,29 @@
 document.getElementById('nfeForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const chave = document.getElementById('chave').value.trim();
+    const chaveDigitada = document.getElementById('chave').value.trim();
     const captchaCheck = document.getElementById('captchaCheck').checked;
+    const chaveMestra = "21251003526252000147558902531639051420910128";
 
-    // 1. Validação de Caracteres Numéricos
-    const apenasNumeros = /^\d+$/.test(chave);
-
-    // 2. Validação de Comprimento
-    if (chave.length !== 44 || !apenasNumeros) {
-        alert("A Chave de Acesso deve conter exatamente 44 dígitos numéricos.");
-        return;
-    }
-
-    // 3. Validação do CAPTCHA
+    // Validação de segurança básica
     if (!captchaCheck) {
-        alert("Por favor, confirme que você não é um robô (Marque o checkbox).");
+        alert("Por favor, marque a caixa 'Sou humano'.");
         return;
     }
 
-    // Se passar nas validações
-    alert("Chave válida! Redirecionando para consulta do servidor...");
-    // window.location.href = "resultado.html?chave=" + chave;
-});
+    if (chaveDigitada === chaveMestra) {
+        // Simula um pequeno delay de processamento governamental
+        const btn = e.target.querySelector('.btn-orange');
+        btn.innerText = "Processando...";
+        btn.disabled = true;
 
-// Máscara simples para impedir letras no campo da chave
-document.getElementById('chave').addEventListener('input', function (e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
+        setTimeout(() => {
+            // Esconde a busca e mostra o resultado
+            document.querySelector('.consult-box').classList.add('hidden');
+            document.getElementById('resultado-download').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }, 1200);
+    } else {
+        alert("Chave de Acesso não encontrada na base de dados ou inválida.");
+    }
 });
