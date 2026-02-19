@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Consulta NF-e - Institucional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-placeholder">NF-e</div>
+                <h1>Portal de Consulta NF-e</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Página Inicial</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Legislação</a></li>
+                    <li><a href="#">Perguntas Frequentes</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="consulta-section">
+            <h2>Consulta Pública de NF-e</h2>
+            <p>Informe a chave de acesso de 44 dígitos presente no DANFE.</p>
+            
+            <form id="nfeForm" class="card">
+                <div class="form-group">
+                    <label for="chaveAcesso">Chave de Acesso</label>
+                    <input type="text" id="chaveAcesso" maxlength="44" placeholder="0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000" required>
+                    <span class="hint">Digite apenas os números.</span>
+                </div>
+
+                <div class="captcha-container">
+                    <div class="captcha-img" id="captchaDisplay">R 8 X 2 W</div>
+                    <div class="form-group">
+                        <label for="captchaInput">Digite os caracteres da imagem</label>
+                        <input type="text" id="captchaInput" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Consultar</button>
+            </form>
+        </section>
+
+        <section id="resultado-section" class="hidden">
+            <h2>Dados da Nota Fiscal Eletrônica</h2>
+            <div class="card result-grid">
+                <div class="data-box"><strong>Situação:</strong> <span class="status-badge">AUTORIZADA</span></div>
+                <div class="data-box"><strong>Data de Emissão:</strong> 15/02/2026</div>
+                <div class="data-box"><strong>Emitente:</strong> EMPRESA EXEMPLO LTDA (00.000.000/0001-00)</div>
+                <div class="data-box"><strong>Destinatário:</strong> CONSUMIDOR FINAL (***.000.000-**)</div>
+                <div class="data-box"><strong>Valor Total:</strong> R$ 1.250,00</div>
+                <div class="actions">
+                    <button class="btn-sec">Baixar XML</button>
+                    <button class="btn-sec">Imprimir PDF (DANFE)</button>
+                </div>
+            </div>
+            <button onclick="voltarConsulta()" class="btn-link">Nova Consulta</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacidade</a>
+                <a href="#">Manual de Orientação</a>
+                <a href="#">Portal da Receita</a>
+            </div>
+            <p>&copy; 2026 Portal de Serviços Governamentais. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
