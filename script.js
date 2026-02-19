@@ -1,34 +1,30 @@
 document.getElementById('nfeForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const chave = document.getElementById('chaveAcesso').value.replace(/\s/g, '');
-    const captchaInput = document.getElementById('captchaInput').value.toUpperCase();
-    const captchaOriginal = document.getElementById('captchaDisplay').innerText.replace(/\s/g, '');
+    const chave = document.getElementById('chave').value.trim();
+    const captchaCheck = document.getElementById('captchaCheck').checked;
 
-    // Validação da Chave
-    if (chave.length !== 44 || isNaN(chave)) {
-        alert("Erro: A Chave de Acesso deve conter exatamente 44 dígitos numéricos.");
+    // 1. Validação de Caracteres Numéricos
+    const apenasNumeros = /^\d+$/.test(chave);
+
+    // 2. Validação de Comprimento
+    if (chave.length !== 44 || !apenasNumeros) {
+        alert("A Chave de Acesso deve conter exatamente 44 dígitos numéricos.");
         return;
     }
 
-    // Validação Simples de Captcha
-    if (captchaInput !== captchaOriginal) {
-        alert("Erro: O texto do CAPTCHA não confere.");
+    // 3. Validação do CAPTCHA
+    if (!captchaCheck) {
+        alert("Por favor, confirme que você não é um robô (Marque o checkbox).");
         return;
     }
 
-    // Simulação de Carregamento
-    exibirResultado();
+    // Se passar nas validações
+    alert("Chave válida! Redirecionando para consulta do servidor...");
+    // window.location.href = "resultado.html?chave=" + chave;
 });
 
-function exibirResultado() {
-    document.getElementById('consulta-section').classList.add('hidden');
-    document.getElementById('resultado-section').classList.remove('hidden');
-    window.scrollTo(0, 0);
-}
-
-function voltarConsulta() {
-    document.getElementById('consulta-section').classList.remove('hidden');
-    document.getElementById('resultado-section').classList.add('hidden');
-    document.getElementById('nfeForm').reset();
-}
+// Máscara simples para impedir letras no campo da chave
+document.getElementById('chave').addEventListener('input', function (e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
