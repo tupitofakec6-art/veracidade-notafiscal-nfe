@@ -2,130 +2,101 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal da Nota Fiscal Eletrônica - SVRS</title>
+    <title>Portal da Nota Fiscal Eletrônica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="gov-bar">
-        <div class="container barra-flex">
-            <div class="brasil-brand">
-                <span class="flag"></span>
-                <strong>BRASIL</strong>
+    <div class="gov-br-bar">
+        <div class="container row">
+            <div class="brasil-logo">BRASIL</div>
+            <div class="gov-links">
+                <span>Simplifique!</span>
+                <span>Comunica BR</span>
+                <span>Acesso à informação</span>
             </div>
-            <nav class="gov-links">
-                <a href="#">Simplifique!</a>
-                <a href="#">Comunica BR</a>
-                <a href="#">Participe</a>
-                <a href="#">Acesso à informação</a>
-                <a href="#">Legislação</a>
-                <a href="#">Canais</a>
-            </nav>
         </div>
     </div>
 
-    <header class="main-header">
-        <div class="container header-grid">
-            <div class="logo-area">
-                <div class="nfe-logo">NF-e</div>
-                <div class="nfe-text">
-                    <h2>NOTA FISCAL ELETRÔNICA</h2>
-                    <span>Portal Nacional</span>
+    <header class="header-nfe">
+        <div class="container">
+            <div class="logo-box">
+                <span class="nfe-sigla">NF-e</span>
+                <div class="nfe-titulo">
+                    <h1>NOTA FISCAL ELETRÔNICA</h1>
+                    <p>Portal Nacional</p>
                 </div>
             </div>
         </div>
     </header>
 
-    <nav class="main-nav">
+    <nav class="nav-principal">
         <div class="container">
             <ul>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Legislação</a></li>
-                <li><a href="#">Documentos</a></li>
-                <li><a href="#">Downloads</a></li>
+                <li>Serviços</li>
+                <li>Legislação</li>
+                <li>Documentos</li>
+                <li>Downloads</li>
             </ul>
         </div>
     </nav>
 
-    <div class="container layout-wrapper">
-        
-        <main class="content-col">
-            <nav class="breadcrumb">
-                Você está aqui: <a href="#">Página Principal</a> > <a href="#">Serviços</a> > Consultar NF-e
-            </nav>
+    <div class="container main-grid">
+        <main class="col-70">
+            <div class="breadcrumb">Você está aqui: Página Principal > Serviços > Consultar NF-e</div>
+            
+            <section id="area-consulta" class="box-branco">
+                <h2>Consultar NF-e</h2>
+                <div class="form-bege">
+                    <label>Chave de Acesso da NF-e</label>
+                    <input type="text" id="chaveInput" maxlength="44" placeholder="Informe os 44 dígitos da chave">
+                    
+                    <div class="captcha-box">
+                        <input type="checkbox" id="humanCheck"> <label for="humanCheck">Sou humano</label>
+                    </div>
 
-            <section class="consult-box">
-                <h3>Consultar NF-e</h3>
-                <div class="form-container">
-                    <form id="nfeForm">
-                        <div class="field-group">
-                            <label for="chave">Chave de Acesso da NF-e</label>
-                            <input type="text" id="chave" maxlength="44" placeholder="Informe os 44 dígitos da Chave de Acesso" required>
-                        </div>
-
-                        <div class="captcha-box">
-                            <div class="captcha-dummy">
-                                <input type="checkbox" id="captchaCheck">
-                                <label for="captchaCheck">Sou humano</label>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg" alt="h" width="25" style="float:right; opacity: 0.5;">
-                            </div>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="submit" class="btn-orange">Continuar</button>
-                            <button type="reset" class="btn-gray">Limpar</button>
-                        </div>
-                    </form>
+                    <div class="acoes">
+                        <button onclick="validarChave()" class="btn-continuar">Continuar</button>
+                        <button onclick="limpar()" class="btn-limpar">Limpar</button>
+                    </div>
                 </div>
 
-                <div class="obs-box">
+                <div class="observacoes">
                     <h4>Observações</h4>
                     <ol>
                         <li>A consulta deverá ser feita informando-se os 44 dígitos da chave de acesso.</li>
                         <li>Deverão ser digitados os caracteres do código da imagem.</li>
-                        <li>Para o correto funcionamento do Portal, seu navegador deve estar com "cookies" habilitados.</li>
+                        <li>Necessidade de cookies habilitados.</li>
                     </ol>
+                </div>
+            </section>
+
+            <section id="area-resultado" class="box-branco hidden">
+                <h2>Resultado da Consulta</h2>
+                <div class="resultado-info">
+                    <p><strong>Chave:</strong> 21251003526252000147558902531639051420910128</p>
+                    <p><strong>Situação:</strong> <span class="status">AUTORIZADA</span></p>
+                    <div class="download-group">
+                        <a href="documento.pdf" download class="btn-continuar">Download PDF</a>
+                        <button onclick="location.reload()" class="btn-limpar">Nova Consulta</button>
+                    </div>
                 </div>
             </section>
         </main>
 
-        <aside class="sidebar-col">
-            <div class="search-box">
-                <input type="text" placeholder="Buscar">
-                <button>Ir</button>
+        <aside class="col-30">
+            <div class="side-card">
+                <h3>Estatísticas</h3>
+                <p>NF-e Autorizadas: <strong>34,5 Bi</strong></p>
+                <p>Emissores: <strong>2,1 Mi</strong></p>
             </div>
-
-            <div class="side-card stats">
-                <h4>Estatísticas da NF-e</h4>
-                <p><strong>NF-e Autorizadas:</strong><br><span>34,5 Bilhões</span></p>
-                <p><strong>Número de Emissores:</strong><br><span>2,1 Milhões</span></p>
-                <a href="#" class="more-link">saiba mais...</a>
+            <div class="side-menu">
+                <div class="item">Área Restrita do Fisco</div>
+                <div class="item">Central de Atendimento</div>
+                <div class="item">Perguntas Frequentes</div>
             </div>
-
-            <nav class="vertical-menu">
-                <a href="#" class="menu-item">Área Restrita do Fisco</a>
-                <a href="#" class="menu-item">Central de Atendimento</a>
-                <a href="#" class="menu-item">Perguntas Frequentes</a>
-                <a href="#" class="menu-item">Portais e Secretarias</a>
-            </nav>
-
-            <div class="side-card dropdowns">
-                <select>
-                    <option>Portais Estaduais da NF-e</option>
-                </select>
-                <select>
-                    <option>Secretarias de Fazenda</option>
-                </select>
-            </div>
+            <select class="side-select"><option>Portais Estaduais</option></select>
         </aside>
     </div>
-
-    <footer class="main-footer">
-        <div class="container">
-            <p>Secretaria da Fazenda - Receita Federal do Brasil</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
